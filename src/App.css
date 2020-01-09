@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+/*
+    Row of bootstrap
+*/
+.row-content {
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    /*border-bottom: 1px ridge;*/
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*
+    header
+*/
+.header {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, .2);
+    color: #0087cc;
+    /*background: #9575CD ;*/
+    border-bottom: #9575CD solid 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*
+    title of media, form, etc.
+*/
+.title {
+    font-size: 36px;
+    color: #64887d;
+    letter-spacing: 0.5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.subtitle {
+    font-size: 24px;
+    letter-spacing: 0.5px;
 }
 
-.App-link {
-  color: #61dafb;
+/*
+    Form group 
+*/
+.form-group {
+    margin: 5px 0 27px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-group Label {
+    color: #a9b2b9;
+    font-size: 20px;
 }
+
+Card CardImg {
+    padding: 10px 5px;
+}
+
+ListGroup {
+    border: solid 1px;
+}
+
+/*
+    Post in main view
+*/
+.postbody {
+    font-size: 18px;
+}
+
+
+
+

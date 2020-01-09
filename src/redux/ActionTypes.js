@@ -1,0 +1,26 @@
+//export const ADD_USERS = 'ADD_USERS';
+//export const ADD_POSTS = 'ADD_POSTS';
+//export const LOGIN = 'LOGIN';
+//export const LOGOUT = 'LOGOUT';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const REGISTER_SUCCEED = 'REGISTER_SUCCEED';
+
+export const UPLOAD_AVATAR_FAIL = 'UPLOAD_AVATAR_FAIL';
+export const UPLOAD_AVATAR_SUCCEED = 'UPLOAD_AVATAR_SUCCESS';
+
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const LOGOUT_SUCCEED = 'LOGOUT_SUCCEED';
+
+export const UPLOAD_HEADLINE_SUCCEED = 'UPLOAD_HEADLINE_SUCCEED';
+export const UPLOAD_HEADLINE_FAIL = 'UPLOAD_HEADLINE_FAIL';
+
+export const ADD_ARTICLES = 'ADD_ARTICLES';
+
+export const FETCH_FIELD = 'FETCH_FIELD';
+
+export const EXTRACT_AVATAR = 'EXTRACT_AVATAR';
+
+export const NEVIGATE = 'NEVIGATE';
