@@ -61,7 +61,7 @@ class RenderComments extends Component {
                 <Button className="col"  color="primary" onClick={() => this.props.addComment(this.state.commentText, this.props.post._id)}>Comment</Button>
                 </div>
                 <div className="mt-3">
-                    <Button outline color="success" size="sm" onClick={this.toggleComments} style={{ marginBottom: '1rem' }}><i class="fas fa-toggle-on fa-lg"></i></Button>
+                    <Button outline color="success" size="sm" onClick={this.toggleComments} style={{ marginBottom: '1rem' }}><i className="fas fa-toggle-on fa-lg"></i></Button>
                     <Collapse isOpen={this.state.isCommentsOpen}>
                         <ListGroup>
                             {this.props.post.comments.map((comm) => {

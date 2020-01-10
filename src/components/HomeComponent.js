@@ -8,7 +8,9 @@ import Footer from './FooterComponent';
 import { connect } from 'react-redux';
 import { login, register, uploadAvatar, logout,  uploadHeadline, unfollow,
         follow, uploadPost, editArticle, addComment, editComment, updateEmail,
-        updateZipcode, updatePassword } from '../redux/ActionCreators';
+        updateZipcode, updatePassword, nevigate, keepLoginWhenRefresh } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
+import { ActionLogs } from '../redux/actionLogs';
 
 const mapStateToProps = state => {
     return {
@@ -35,27 +37,53 @@ const mapDispatchToProps = (dispatch) => ({
     editComment: (text, postId, commentId) => dispatch(editComment(text, postId, commentId)),
     updateEmail: (email) => dispatch(updateEmail(email)),
     updateZipcode: (zipcode) => dispatch(updateZipcode(zipcode)),
-    updatePassword: (pw) => dispatch(updatePassword(pw))
+    updatePassword: (pw) => dispatch(updatePassword(pw)),
+    nevigate: (page) => dispatch(nevigate(page)),
+    keepLoginWhenRefresh: () => dispatch(keepLoginWhenRefresh())
 })
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
+
     }
 
-    render() {
+    
+    componentDidMount() {
+        this.props.keepLoginWhenRefresh()
+    }
+    
 
+   componentDidUpdate() {
+        //sessionStorage.setItem('actionLogs', JSON.stringify(this.props.actionLogs));
+        //sessionStorage.setItem('viewpage', JSON.stringify(this.props.viewpage));
+        //sessionStorage.setItem('profile', JSON.stringify(this.props.profile));
+   }
+
+    render() {
+        /*
+        var actionLogs = JSON.parse(sessionStorage.getItem('actionLogs'));
+        var viewpage = JSON.parse(sessionStorage.getItem('viewpage'));
+        var profile = JSON.parse(sessionStorage.getItem('profile'));
+
+        if (!(actionLogs && actionLogs.isAuthenticated)) {
+            actionLogs = this.props.actionLogs;
+            viewpage = this.props.viewpage;
+            profile = this.props.profile;
+        }
+        */
         return (
             <div>
                 <Header />
-                <Switch>
-                     <Route exact path="/landing" component={() => <Landing profile={this.props.profile} 
+                {/*<Switch>*/}
+                {this.props.viewpage.page==="/landing" && <Landing profile={this.props.profile} 
                                                                     login={this.props.login}  
                                                                     viewpage = {this.props.viewpage.page} 
                                                                     register={this.props.register} 
-                                                                    actionLogs={this.props.actionLogs} />} /> 
-                    <Route exact path="/main" component={() => <Main profile={this.props.profile} 
+                                                                    actionLogs={this.props.actionLogs}
+                                                                    nevigate={this.props.nevigate} /> } 
+                {this.props.viewpage.page==="/main" && <Main profile={this.props.profile} 
                                                                 logout={this.props.logout}
                                                                 uploadHeadline={this.props.uploadHeadline} 
                                                                 actionLogs={this.props.actionLogs} 
@@ -65,19 +93,19 @@ class Home extends Component {
                                                                 uploadPost={this.props.uploadPost}
                                                                 editArticle={this.props.editArticle}
                                                                 addComment={this.props.addComment} 
-                                                                editComment={this.props.editComment} />} />
-                    <Route exact path="/profile" component={() => <Profile profile={this.props.profile} 
+                                                                editComment={this.props.editComment} 
+                                                                nevigate={this.props.nevigate} />} 
+                {this.props.viewpage.page==="/profile" && <Profile profile={this.props.profile} 
                                                                            actionLogs={this.props.actionLogs}
                                                                            uploadAvatar={this.props.uploadAvatar}
                                                                            updateEmail={this.props.updateEmail} 
                                                                            updateZipcode={this.props.updateZipcode} 
-                                                                           updatePassword={this.props.updatePassword} />} />
-                    <Redirect to="/landing" />
-                </Switch>
+                                                                           updatePassword={this.props.updatePassword}
+                                                                           nevigate={this.props.nevigate} />}
                 <Footer />
             </div>
         );    
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -39,6 +39,8 @@ class Avatar extends Component {
             this.props.uploadAvatar(this.state.newAvatar);
         }
     }
+
+    
  
     render() {
 
@@ -48,9 +50,9 @@ class Avatar extends Component {
                     <Navbar color="info" light expand="lg">
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink className="nav-link" to="/main">
+                                <Button outline className="nav-link border-0" onClick={() => {sessionStorage.setItem('viewpage', '/main'); this.props.nevigate("/main")}}>
                                     <i className="fas fa-sign-out-alt fa-lg"></i> Main
-                                </NavLink>
+                                </Button>
                             </NavItem>
                         </Nav>
                     </Navbar>

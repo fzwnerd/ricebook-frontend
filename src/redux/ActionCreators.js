@@ -29,6 +29,12 @@ export const login = (username, password) => (dispatch) => {
             .then(() => dispatch(fetchFollowing()))
             .then(() => dispatch(fetchField('username', username)))
             .then(() => dispatch(loginSuccess()))
+            .then(() => {
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('password', password);
+                sessionStorage.setItem('isAuthenticated', true);
+                sessionStorage.setItem('viewpage', '/main');
+            })
             .then(() => dispatch(nevigate('/main')))
             .catch(error => dispatch(loginFailed(error.message)));  
 };
@@ -48,8 +54,33 @@ export const logout = () => (dispatch) => {
     return request('logout', 'PUT', null, false)
             .then(() => dispatch(logoutSucceed()))
             .then(() => dispatch(nevigate('/landing')))
+            .then(() => sessionStorage.setItem('viewpage', '/landing'))
+            .then(() => sessionStorage.setItem('isAuthenticated', false))
             .catch(error => dispatch(logoutFail(error.message)))
 }
+
+export const keepLoginWhenRefresh = () => (dispatch) => {
+    var isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    if (isAuthenticated) {
+        console.log('re log in');
+        var username = sessionStorage.getItem('username');
+        var password = sessionStorage.getItem('password');
+        return request('login', 'POST', JSON.stringify({username: username, 
+                    password: password}), true)
+            .then(() => dispatch(fetchUserInfo()))
+            .then(() => dispatch(fetchFollowing()))
+            .then(() => dispatch(fetchField('username', username)))
+            .then(() => dispatch(loginSuccess()))
+            .then(() => {
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('password', password);
+                sessionStorage.setItem('isAuthenticated', true);
+            })
+            .then(() => dispatch(nevigate(sessionStorage.getItem('viewpage'))))
+            .catch(error => dispatch(loginFailed(error.message)));
+    }
+}
+
 
 export const uploadAvatar = (avatarForm) => (dispatch) => {
     return request('avatar', 'PUT', avatarForm, false)
@@ -224,6 +255,8 @@ export const editComment = (text, postId, commentId) => (dispatch) => {
         .then(() => dispatch(fetchArticles()))
         .catch(error => console.log(error.message))
 }
+
+
 
 export const fetchField = (field, value) => ({
     type: ActionTypes.FETCH_FIELD,

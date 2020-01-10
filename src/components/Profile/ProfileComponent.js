@@ -15,7 +15,8 @@ class Profile extends Component {
                         <Avatar avatar={this.props.profile.avatar} 
                                 avatarUploadErrmsg={this.props.actionLogs.avatarUploadErrmsg} 
                                 isAvatarUploaded={this.props.actionLogs.isAvatarUploaded}
-                                uploadAvatar={this.props.uploadAvatar} />
+                                uploadAvatar={this.props.uploadAvatar}
+                                nevigate={this.props.nevigate} />
                     </div>
                 </div>
                 <div className="row row-content">

@@ -11,8 +11,6 @@ class Main extends Component {
     }
 
     render() {
-        if (this.props.viewpage === "/landing")
-            return <Redirect to="/landing" />;
 
         return (
             <div className="container">
@@ -23,7 +21,8 @@ class Main extends Component {
                                     uploadHeadline={this.props.uploadHeadline}
                                     isHeadlineUploaded={this.props.actionLogs.isHeadlineUploaded}
                                     headlineUploadErrmsg={this.props.actionLogs.headlineUploadErrmsg}
-                                    logout={this.props.logout} />
+                                    logout={this.props.logout}
+                                    nevigate={this.props.nevigate} />
                         </div>
                         <div className="row-content">
                             <Following friends={this.props.profile.following} 

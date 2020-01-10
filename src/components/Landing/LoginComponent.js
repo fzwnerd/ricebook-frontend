@@ -20,8 +20,6 @@ class Login extends Component {
     }
 
     render() {  
-        if (this.props.viewpage === "/main")
-            return <Redirect to="/main" />;
        
         return(
             <div className="row">

@@ -40,14 +40,14 @@ class Nevigate extends Component {
                     <Navbar color="info" light expand="lg">
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to="/landing" onClick={this.handleClick}>
+                                <Button outline className="nav-link border-0 mr-2"  onClick={this.handleClick}>
                                     <i className="fas fa-sign-out-alt fa-lg"></i> Logout
-                                </NavLink>
+                                </Button>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to="/profile">
+                                <Button outline className="nav-link border-0" onClick={() => {sessionStorage.setItem('viewpage', '/profile'); this.props.nevigate("/profile")}}>
                                     <i className="fa fa-address-card fa-lg"></i> Profile
-                                </NavLink>
+                                </Button>
                             </NavItem>
                         </Nav>
                     </Navbar>                   
