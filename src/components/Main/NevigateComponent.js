@@ -55,11 +55,11 @@ class Nevigate extends Component {
                 <div className="mt-2">
                     <Card>
                         <div className="pt-3 pb-1 pr-3 pl-3">
-                        <CardImg  width="100%" src={this.props.profile.avatars[0].avatar ? this.props.profile.avatars[0].avatar : "https://www.w3schools.com/howto/img_avatar.png"} alt="Your avatar" id="avatarInMain" />
+                        <CardImg  width="100%" src={this.props.profile.avatars ? this.props.profile.avatars[0].avatar : "https://www.w3schools.com/howto/img_avatar.png"} alt="Your avatar" id="avatarInMain" />
                         </div>
                         <CardBody>
                             <CardTitle className="mt-2 title">{this.props.profile.username}</CardTitle>
-                            <CardSubtitle className="subtitle">{this.props.profile.headlines[0].headline}</CardSubtitle>
+                            <CardSubtitle className="subtitle">{this.props.profile.headlines ? this.props.profile.headlines[0].headline : 'No status yet'}</CardSubtitle>
                             <Row className="mt-1">
                                 <Col md="8">
                                     <textarea className="form-control rounded-1" id="status" rows="1"

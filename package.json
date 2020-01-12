@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "nyc --reporter=html mocha --opts mocha.opts src/**/*.spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,6 +41,19 @@
     ]
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.0"
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.0",
+    "@babel/register": "^7.8.0",
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "coffeescript": "^2.5.0",
+    "jsdom": "^15.2.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^7.0.0",
+    "mock-fetch": "https://www.clear.rice.edu/comp431/sample/mock-fetch.tgz",
+    "mockery": "^2.1.0",
+    "nyc": "^15.0.0"
   }
 }

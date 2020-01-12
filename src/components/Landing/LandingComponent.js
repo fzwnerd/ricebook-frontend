@@ -24,7 +24,8 @@ class Landing extends Component {
                                 isAuthenticated={this.props.actionLogs.isAuthenticated} 
                                 loginErrmsg={this.props.actionLogs.loginErrmsg}
                                 isLoggedout={this.props.actionLogs.isLoggedout}
-                                logoutErrmsg={this.props.actionLogs.logoutErrmsg} />
+                                logoutErrmsg={this.props.actionLogs.logoutErrmsg}
+                                resetLoginForm={this.props.resetLoginForm} />
                     </div>
                 </div>
             </div>

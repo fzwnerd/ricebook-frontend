@@ -15,6 +15,7 @@ class Login extends Component {
 
     handleSubmit(values) {
         this.props.login(values.username, values.password);
+        this.props.resetLoginForm();
         //if (this.props.isAuthenticated)
         //    this.props.history.push('/main');
     }

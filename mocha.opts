@@ -1,0 +1,6 @@
+--require @babel/register
+--require jsdom-global/register
+--recursive
+--colors
+--timeout 10000
+--bail

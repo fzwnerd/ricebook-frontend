@@ -157,21 +157,24 @@ class Posts extends Component {
 
         this.state = {
             selectedPosts: this.props.posts,
-            keyword: ''
+            keyword: '',
+            doSelect: false
         }
 
         this.select = this.select.bind(this);
     }
 
     select = () => {
-        if (this.state.keyword)
+        if (this.state.keyword) {
+            this.setState({doSelect: true})
             this.setState({selectedPosts: this.props.posts.filter((post) => {
                 return post.text.includes(this.state.keyword.trim()) || post.author.includes(this.state.keyword.trim())
             })})
+        }
     }
 
     unselect = () => {
-        this.setState({selectedPosts: this.props.posts, keyword: ''});
+        this.setState({selectedPosts: this.props.posts, keyword: '', doSelect: false});
         document.getElementById("searchWord").value = '';
     }
 
@@ -187,7 +190,7 @@ class Posts extends Component {
                         <Button onClick={() => this.unselect()}><i className="fas fa-times"></i></Button>
                     </InputGroupAddon>
                 </InputGroup>
-                <RenderPosts posts={this.state.selectedPosts} logger={this.props.logger} 
+                <RenderPosts posts={this.state.doSelect ? this.state.selectedPosts:this.props.posts} logger={this.props.logger} 
                             editArticle={this.props.editArticle}
                             addComment={this.props.addComment}
                             editComment={this.props.editComment} />

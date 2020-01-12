@@ -39,40 +39,23 @@ const mapDispatchToProps = (dispatch) => ({
     updateZipcode: (zipcode) => dispatch(updateZipcode(zipcode)),
     updatePassword: (pw) => dispatch(updatePassword(pw)),
     nevigate: (page) => dispatch(nevigate(page)),
-    keepLoginWhenRefresh: () => dispatch(keepLoginWhenRefresh())
+    keepLoginWhenRefresh: () => dispatch(keepLoginWhenRefresh()),
+    resetLoginForm: () => dispatch(actions.reset('login'))
 })
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-
+        //this.props.keepLoginWhenRefresh();
     }
 
     
     componentDidMount() {
         this.props.keepLoginWhenRefresh()
     }
-    
-
-   componentDidUpdate() {
-        //sessionStorage.setItem('actionLogs', JSON.stringify(this.props.actionLogs));
-        //sessionStorage.setItem('viewpage', JSON.stringify(this.props.viewpage));
-        //sessionStorage.setItem('profile', JSON.stringify(this.props.profile));
-   }
 
     render() {
-        /*
-        var actionLogs = JSON.parse(sessionStorage.getItem('actionLogs'));
-        var viewpage = JSON.parse(sessionStorage.getItem('viewpage'));
-        var profile = JSON.parse(sessionStorage.getItem('profile'));
-
-        if (!(actionLogs && actionLogs.isAuthenticated)) {
-            actionLogs = this.props.actionLogs;
-            viewpage = this.props.viewpage;
-            profile = this.props.profile;
-        }
-        */
         return (
             <div>
                 <Header />
@@ -82,7 +65,8 @@ class Home extends Component {
                                                                     viewpage = {this.props.viewpage.page} 
                                                                     register={this.props.register} 
                                                                     actionLogs={this.props.actionLogs}
-                                                                    nevigate={this.props.nevigate} /> } 
+                                                                    nevigate={this.props.nevigate}
+                                                                    resetLoginForm={this.props.resetLoginForm} /> } 
                 {this.props.viewpage.page==="/main" && <Main profile={this.props.profile} 
                                                                 logout={this.props.logout}
                                                                 uploadHeadline={this.props.uploadHeadline} 

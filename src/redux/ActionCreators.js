@@ -36,7 +36,7 @@ export const login = (username, password) => (dispatch) => {
                 sessionStorage.setItem('viewpage', '/main');
             })
             .then(() => dispatch(nevigate('/main')))
-            .catch(error => dispatch(loginFailed(error.message)));  
+            .catch(() => dispatch(loginFailed('Invalid username or password')));  
 };
 
 export const register = (username, password, email, dob, zipcode) => (dispatch) => {
@@ -51,11 +51,11 @@ export const register = (username, password, email, dob, zipcode) => (dispatch) 
 };
 
 export const logout = () => (dispatch) => {
-    return request('logout', 'PUT', null, false)
-            .then(() => dispatch(logoutSucceed()))
+    return request('logout', 'PUT', null, false)           
             .then(() => dispatch(nevigate('/landing')))
             .then(() => sessionStorage.setItem('viewpage', '/landing'))
             .then(() => sessionStorage.setItem('isAuthenticated', false))
+            .then(() => dispatch(logoutSucceed()))
             .catch(error => dispatch(logoutFail(error.message)))
 }
 
@@ -114,6 +114,7 @@ export const follow = (name) => (dispatch) => {
 
 export const uploadPost = (postForm) => (dispatch) => {
     return request('article', 'POST', postForm, false)
+            .then(() => dispatch(fetchArticles()))
             .catch(error => console.log(error.message));
 }
 
